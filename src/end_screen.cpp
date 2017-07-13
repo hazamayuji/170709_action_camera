@@ -11,6 +11,8 @@
 
 void end_screen::setup(){
     
+    ofBackground(0, 0, 0);
+    title_font.load("Arial.ttf", 80);
     
 }
 
@@ -19,5 +21,14 @@ void end_screen::update(){
 }
 
 void end_screen::draw(){
-    ofBackground(0, 255, 0);
+    
+    int title_x = ofGetWidth()/4;
+    int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
+    
+    //タイトルの描画
+    ofSetColor(255, 255, 255);
+    title_font.drawString("END", title_x, title_y);
+    
+
+    
 }

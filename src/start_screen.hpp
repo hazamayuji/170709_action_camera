@@ -25,9 +25,21 @@ public:
     void mouseReleased(int x, int y, int button);
     void keyPressed(int key);
     void keyReleased(int key);
-
     
+    //フォント
     ofTrueTypeFont font;
     ofTrueTypeFont title_font;
+    
+    //int -> stringへの変換がどうしてもうまくいかなかったため強硬手段
+    string num;
+    
+    //画面切り替えで使用
+    int currentScreen;
+    
+    bool box_cov_1 = false;
+    bool box_cov_2 = false;
+    bool box_cov_3 = false;
+    
+    bool Press_button = false;
     
 };

@@ -23,5 +23,6 @@ public:
     virtual void mousePressed(){};
     virtual void mouseReleased(){};
     
+    virtual void IntToString(){};
     
 };

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0DBF27531F14C6160002E199 /* main_screen_01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF27511F14C6160002E199 /* main_screen_01.cpp */; };
-		0DBF27561F14C6880002E199 /* main_screen_02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF27541F14C6880002E199 /* main_screen_02.cpp */; };
-		0DBF27591F14C6A00002E199 /* main_screen_03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF27571F14C6A00002E199 /* main_screen_03.cpp */; };
 		0DC7B8CD1F12184A0089F8A0 /* BaseScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DC7B8CB1F12184A0089F8A0 /* BaseScreen.cpp */; };
 		0DC7B8D01F1218A00089F8A0 /* start_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DC7B8CE1F1218A00089F8A0 /* start_screen.cpp */; };
 		0DC7B8D61F12194D0089F8A0 /* end_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DC7B8D41F12194D0089F8A0 /* end_screen.cpp */; };
@@ -50,10 +48,6 @@
 /* Begin PBXFileReference section */
 		0DBF27511F14C6160002E199 /* main_screen_01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_screen_01.cpp; sourceTree = "<group>"; };
 		0DBF27521F14C6160002E199 /* main_screen_01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main_screen_01.hpp; sourceTree = "<group>"; };
-		0DBF27541F14C6880002E199 /* main_screen_02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_screen_02.cpp; sourceTree = "<group>"; };
-		0DBF27551F14C6880002E199 /* main_screen_02.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main_screen_02.hpp; sourceTree = "<group>"; };
-		0DBF27571F14C6A00002E199 /* main_screen_03.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_screen_03.cpp; sourceTree = "<group>"; };
-		0DBF27581F14C6A00002E199 /* main_screen_03.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main_screen_03.hpp; sourceTree = "<group>"; };
 		0DC7B8CB1F12184A0089F8A0 /* BaseScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseScreen.cpp; sourceTree = "<group>"; };
 		0DC7B8CC1F12184A0089F8A0 /* BaseScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseScreen.hpp; sourceTree = "<group>"; };
 		0DC7B8CE1F1218A00089F8A0 /* start_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = start_screen.cpp; sourceTree = "<group>"; };
@@ -131,10 +125,6 @@
 				0DC7B8D51F12194D0089F8A0 /* end_screen.hpp */,
 				0DBF27511F14C6160002E199 /* main_screen_01.cpp */,
 				0DBF27521F14C6160002E199 /* main_screen_01.hpp */,
-				0DBF27541F14C6880002E199 /* main_screen_02.cpp */,
-				0DBF27551F14C6880002E199 /* main_screen_02.hpp */,
-				0DBF27571F14C6A00002E199 /* main_screen_03.cpp */,
-				0DBF27581F14C6A00002E199 /* main_screen_03.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -236,13 +226,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				0DBF27591F14C6A00002E199 /* main_screen_03.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				0DBF27531F14C6160002E199 /* main_screen_01.cpp in Sources */,
 				0DC7B8D01F1218A00089F8A0 /* start_screen.cpp in Sources */,
 				0DC7B8CD1F12184A0089F8A0 /* BaseScreen.cpp in Sources */,
 				0DC7B8D61F12194D0089F8A0 /* end_screen.cpp in Sources */,
-				0DBF27561F14C6880002E199 /* main_screen_02.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

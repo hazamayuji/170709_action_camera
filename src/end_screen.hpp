@@ -18,5 +18,6 @@ public:
     void update();
     void draw();
     
+    ofTrueTypeFont title_font;
     
 };

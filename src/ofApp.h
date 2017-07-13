@@ -6,8 +6,6 @@
 #include "end_screen.hpp"
 
 #include "main_screen_01.hpp"
-#include "main_screen_02.hpp"
-#include "main_screen_03.hpp"
 
 #define Screen_NUM 5
 
@@ -30,12 +28,21 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    //複数のシーンを格納する動的配列
-    vector <BaseScreen *> screens;
-    
+        
     //現在のシーン番号
-    int currentScreen;
+    //int currentScreen;
     
+    
+    //配列で簡略化しようとしたけどできない（？）
+    int box_y = ofGetHeight()/2 + 50;
+    int box_width = ofGetWidth()/4.2666;
+    int box_height = ofGetHeight()/7.6;
+    
+    bool Press_button_1 = false;
+    bool Press_button_2 = false;
+    bool Press_button_3 = false;
+    
+    bool Press_button_end = false;
     
     
 
