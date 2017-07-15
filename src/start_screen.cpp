@@ -17,6 +17,8 @@ void start_screen::setup(){
     font.load("Arial.ttf", 20);
     title_font.load("Arial.ttf", 80);
     
+  
+    
 }
 
 //--------------------------------------------------------------
@@ -36,6 +38,8 @@ void start_screen::draw(){
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;
     int text_y = box_y + ofGetHeight()/12.6;
+    
+    
     
     //タイトルの描画
     ofSetColor(255, 255, 255);
@@ -76,48 +80,66 @@ void start_screen::draw(){
     
     
     //カバー_1
-    int box_x_1 = 50 + (ofGetWidth()/3) * 0;
-    if(ofGetMouseX() > box_x_1 && ofGetMouseX() < box_x_1 + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-        box_cov_1 = true;
-    }else{
-        box_cov_1 = false;
-    }
-    
-    if(box_cov_1){
-        ofSetColor(255, 255, 255, 127);
-        ofDrawRectangle(box_x_1, box_y, box_width, box_height);
-    }
-    
-    
-    
-    
-    //カバー_2
-    int box_x_2 = 50 + (ofGetWidth()/3) * 1;
-    if(ofGetMouseX() > box_x_2 && ofGetMouseX() < box_x_2 + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-        box_cov_2 = true;
-    }else{
-        box_cov_2 = false;
-    }
-    
-    if(box_cov_2){
-        ofSetColor(255, 255, 255, 127);
-        ofDrawRectangle(box_x_2, box_y, box_width, box_height);
-    }
+   
+    int box_x_sub[3] = {0,0,0};
+    //int box_x_1 = 50 + (ofGetWidth()/3) * 0;
+    for(int i = 0; i < 4; i++){
+        box_x_sub[i] = 50 + (ofGetWidth()/3) * i;
+        if(ofGetMouseX() > box_x_sub[i] && ofGetMouseX() < box_x_sub[i] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
+            box_cov[i] = true;
+        }else{
+            box_cov[i] = false;
+        }
+        
+        if(box_cov_1){
+            ofSetColor(255, 255, 255, 127);
+            ofDrawRectangle(box_x_sub[i], box_y, box_width, box_height);
+        }
 
-
-    //カバー_3
-    int box_x_3 = 50 + (ofGetWidth()/3) * 2;
-    if(ofGetMouseX() > box_x_3 && ofGetMouseX() < box_x_3 + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-        box_cov_3 = true;
-    }else{
-        box_cov_3 = false;
     }
     
-    if(box_cov_3){
-        ofSetColor(255, 255, 255, 127);
-        ofDrawRectangle(box_x_3, box_y, box_width, box_height);
-    }
     
+//    if(ofGetMouseX() > box_x[0] && ofGetMouseX() < box_x[0] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
+//        box_cov[0] = true;
+//    }else{
+//        box_cov[0] = false;
+//    }
+//    
+//    if(box_cov_1){
+//        ofSetColor(255, 255, 255, 127);
+//        ofDrawRectangle(box_x[0], box_y, box_width, box_height);
+//    }
+//    
+//    
+//    
+//    
+//    //カバー_2
+//    //int box_x_2 = 50 + (ofGetWidth()/3) * 1;
+//    if(ofGetMouseX() > box_x[1] && ofGetMouseX() < box_x[1] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
+//        box_cov[1] = true;
+//    }else{
+//        box_cov[1] = false;
+//    }
+//    
+//    if(box_cov_2){
+//        ofSetColor(255, 255, 255, 127);
+//        ofDrawRectangle(box_x[1], box_y, box_width, box_height);
+//    }
+//
+//
+//    //カバー_3
+//    int box_x_3 = 50 + (ofGetWidth()/3) * 2;
+//    if(ofGetMouseX() > box_x[2] && ofGetMouseX() < box_x[2] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
+//        box_cov[2] = true;
+//    }else{
+//        box_cov[2] = false;
+//    }
+//    
+//    if(box_cov_3){
+//        ofSetColor(255, 255, 255, 127);
+//        ofDrawRectangle(box_x[2], box_y, box_width, box_height);
+//    }
+//    
 
 
 

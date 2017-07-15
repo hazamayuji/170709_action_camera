@@ -36,6 +36,7 @@ public:
     //画面切り替えで使用
     int currentScreen;
     
+    bool box_cov[3] = {false, false, false};
     bool box_cov_1 = false;
     bool box_cov_2 = false;
     bool box_cov_3 = false;
