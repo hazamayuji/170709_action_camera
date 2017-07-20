@@ -10,6 +10,12 @@
 
 #include "ofMain.h"
 #include "BaseScreen.hpp"
+#include "start_screen.hpp"
+#include "ofApp.h"
+
+#include "main_screen_01.hpp"
+
+
 
 class end_screen : public BaseScreen{
 public:

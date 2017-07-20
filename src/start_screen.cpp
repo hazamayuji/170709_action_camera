@@ -2,7 +2,7 @@
 //  start_screen.cpp
 //  170709_action_camera
 //
-//  Created by 狭間祐至 on 2017/07/09.
+//  Created by Áã≠ÈñìÁ•êËá≥ on 2017/07/09.
 //
 //
 
@@ -13,7 +13,7 @@ void start_screen::setup(){
     ofBackground(0, 0, 0);
     ofEnableAlphaBlending();
     
-    //フォントを読み込み
+    //„Éï„Ç©„É≥„Éà„ÇíË™≠„ÅøËæº„Åø
     font.load("Arial.ttf", 20);
     title_font.load("Arial.ttf", 80);
     
@@ -33,7 +33,7 @@ void start_screen::draw(){
     int title_x = ofGetWidth()/4;
     int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
     
-    //配列で簡略化しようとしたけどできない（？）
+
     int box_y = ofGetHeight()/2 + 50;
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;
@@ -41,21 +41,21 @@ void start_screen::draw(){
     
     
     
-    //タイトルの描画
+    //タイトル
     ofSetColor(255, 255, 255);
     title_font.drawString("Kintorechan", title_x, title_y);
     
 
-    //----ボタンの図形を描画----//
+    //----box----//
     
     for(int i = 0; i < 4; i++){
         
-        //いる変数（簡略化する）
+        //
         int box_x[3] ={50 ,50 + (ofGetWidth()/3), 50 + (ofGetWidth()/3)*2};
         int text_x = ofGetWidth()/8.19 + (ofGetWidth()/3) * i;
         
         
-        //levとboxを描画
+        //levの文字
         if(i == 0){
             ofSetColor(255,0,0);
             num = "1";
@@ -70,7 +70,7 @@ void start_screen::draw(){
         //box
         ofDrawRectangle(box_x[i], box_y, box_width, box_height);
 
-        //levの文字
+        //lev
         ofSetColor(255, 255, 255);
         font.drawString("Level " + num, text_x, text_y);
 
@@ -79,7 +79,7 @@ void start_screen::draw(){
     
     
     
-    //カバー
+    
     int box_x_sub[3] = {0,0,0};
     //int box_x_1 = 50 + (ofGetWidth()/3) * 0;
     for(int i = 0; i < 4; i++){

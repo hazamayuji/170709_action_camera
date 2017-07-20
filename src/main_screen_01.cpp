@@ -15,7 +15,7 @@ void main_screen_01::setup(){
 }
 
 void main_screen_01::update(){
-    
+
 }
 
 void main_screen_01::draw(){
@@ -33,7 +33,8 @@ void main_screen_01::draw(){
     ofSetColor(0, 255, 0);
     ofDrawRectangle(box_x_end, ofGetHeight() - 350,  box_width, box_height);
     
-    cout << kintore_count << endl;
+    
+   
     
     
 }

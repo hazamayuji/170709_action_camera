@@ -1,6 +1,5 @@
 #include "ofApp.h"
 
-//複数のシーンを格納する動的配列
 vector <BaseScreen *> screens;
 //インスタンス化
 start_screen star_sc;
@@ -11,11 +10,11 @@ using namespace std;
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0, 0, 0);
-    //初期値を0に設定(start_screenが最初に来るようにした)
+ 
     star_sc.currentScreen = 0;
 
     
-    //シーンを新規に生成し、配列に追加
+
     
     //番号:0
     //start_screen
@@ -111,18 +110,21 @@ void ofApp::mousePressed(int x, int y, int button){
     
     
     
-    int box_x_end = 50 + (ofGetWidth()/3);
+    int box_x_end = 50 + ofGetWidth()/3;
     int box_y_end = ofGetHeight() - 150;
     
     if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < box_y_end + box_height && ofGetMouseY() > box_y_end){
         Press_button_end = true;
-        cout << "hello" << endl;
     }
    
+  
+
+    
     if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < ofGetHeight() - 350 + box_height && ofGetMouseY() > ofGetHeight() - 350){
-        //mai_sc_01.kintore_count++;
-        cout << "hIII" << endl;
+        mai_sc_01.kintore_count++;
+        cout << mai_sc_01.kintore_count << endl;
     }
+   
 
 }
 

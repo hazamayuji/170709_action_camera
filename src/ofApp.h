@@ -29,11 +29,10 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         
-    //現在のシーン番号
-    //int currentScreen;
+      //int currentScreen;
     
     
-    //配列で簡略化しようとしたけどできない（？）
+    //簡単にする
     int box_y = ofGetHeight()/2 + 50;
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;

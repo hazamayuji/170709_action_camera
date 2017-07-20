@@ -29,6 +29,8 @@ void end_screen::draw(){
     ofSetColor(255, 255, 255);
     title_font.drawString("END", title_x, title_y);
     
+    //cout << mai_sc_01.kintore_count << endl;
+    
 
     
 }
