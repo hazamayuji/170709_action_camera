@@ -4,6 +4,7 @@
 vector <BaseScreen *> screens;
 //インスタンス化
 start_screen star_sc;
+main_screen_01 mai_sc_01;
 
 using namespace std;
 
@@ -110,13 +111,19 @@ void ofApp::mousePressed(int x, int y, int button){
     
     
     
-    int box_x_end = 50 + (ofGetWidth()/3) * 1;
+    int box_x_end = 50 + (ofGetWidth()/3);
     int box_y_end = ofGetHeight() - 150;
     
     if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < box_y_end + box_height && ofGetMouseY() > box_y_end){
         Press_button_end = true;
+        cout << "hello" << endl;
     }
-    
+   
+    if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < ofGetHeight() - 350 + box_height && ofGetMouseY() > ofGetHeight() - 350){
+        //mai_sc_01.kintore_count++;
+        cout << "hIII" << endl;
+    }
+
 }
 
 //--------------------------------------------------------------

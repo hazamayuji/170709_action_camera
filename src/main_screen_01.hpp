@@ -19,5 +19,7 @@ public:
     void update();
     void draw();
     
+    int kintore_count = 0;
+    
     
 };

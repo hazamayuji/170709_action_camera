@@ -51,7 +51,7 @@ void start_screen::draw(){
     for(int i = 0; i < 4; i++){
         
         //いる変数（簡略化する）
-        int box_x = 50 + (ofGetWidth()/3) * i;
+        int box_x[3] ={50 ,50 + (ofGetWidth()/3), 50 + (ofGetWidth()/3)*2};
         int text_x = ofGetWidth()/8.19 + (ofGetWidth()/3) * i;
         
         
@@ -68,7 +68,7 @@ void start_screen::draw(){
         }
         
         //box
-        ofDrawRectangle(box_x, box_y, box_width, box_height);
+        ofDrawRectangle(box_x[i], box_y, box_width, box_height);
 
         //levの文字
         ofSetColor(255, 255, 255);
@@ -79,8 +79,7 @@ void start_screen::draw(){
     
     
     
-    //カバー_1
-   
+    //カバー
     int box_x_sub[3] = {0,0,0};
     //int box_x_1 = 50 + (ofGetWidth()/3) * 0;
     for(int i = 0; i < 4; i++){
@@ -91,58 +90,13 @@ void start_screen::draw(){
             box_cov[i] = false;
         }
         
-        if(box_cov_1){
+        if(box_cov[i]){
             ofSetColor(255, 255, 255, 127);
             ofDrawRectangle(box_x_sub[i], box_y, box_width, box_height);
         }
 
     }
     
-    
-//    if(ofGetMouseX() > box_x[0] && ofGetMouseX() < box_x[0] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-//        box_cov[0] = true;
-//    }else{
-//        box_cov[0] = false;
-//    }
-//    
-//    if(box_cov_1){
-//        ofSetColor(255, 255, 255, 127);
-//        ofDrawRectangle(box_x[0], box_y, box_width, box_height);
-//    }
-//    
-//    
-//    
-//    
-//    //カバー_2
-//    //int box_x_2 = 50 + (ofGetWidth()/3) * 1;
-//    if(ofGetMouseX() > box_x[1] && ofGetMouseX() < box_x[1] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-//        box_cov[1] = true;
-//    }else{
-//        box_cov[1] = false;
-//    }
-//    
-//    if(box_cov_2){
-//        ofSetColor(255, 255, 255, 127);
-//        ofDrawRectangle(box_x[1], box_y, box_width, box_height);
-//    }
-//
-//
-//    //カバー_3
-//    int box_x_3 = 50 + (ofGetWidth()/3) * 2;
-//    if(ofGetMouseX() > box_x[2] && ofGetMouseX() < box_x[2] + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-//        box_cov[2] = true;
-//    }else{
-//        box_cov[2] = false;
-//    }
-//    
-//    if(box_cov_3){
-//        ofSetColor(255, 255, 255, 127);
-//        ofDrawRectangle(box_x[2], box_y, box_width, box_height);
-//    }
-//    
-
-
-
 
 
 }
