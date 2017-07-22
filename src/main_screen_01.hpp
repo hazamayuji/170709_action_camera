@@ -2,7 +2,7 @@
 //  main_screen_01.hpp
 //  170709_action_camera
 //
-//  Created by 狭間祐至 on 2017/07/11.
+//  Created by Áã≠ÈñìÁ•êËá≥ on 2017/07/11.
 //
 //
 
@@ -11,6 +11,7 @@
 #include "ofMain.h"
 #include "BaseScreen.hpp"
 #include "start_screen.hpp"
+#include "ofApp.h"
 
 #include "ofxOpenCv.h"
 
@@ -24,6 +25,11 @@ public:
     
     int kintore_count = 0;
     
+    //顔認識
     ofVideoGrabber cam;
+    
+    //数える人
+    ofVideoPlayer test_count[6];
+    
     
 };

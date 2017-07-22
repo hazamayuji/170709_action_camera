@@ -38,6 +38,4 @@ public:
     bool box_cov[3] = {false, false, false};
     bool Press_button = false;
     
-    
-    
 };

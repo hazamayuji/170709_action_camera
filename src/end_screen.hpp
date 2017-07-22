@@ -15,8 +15,6 @@
 
 #include "main_screen_01.hpp"
 
-
-
 class end_screen : public BaseScreen{
 public:
     
@@ -25,4 +23,5 @@ public:
     void draw();
     
     ofTrueTypeFont title_font;
+    
 };
