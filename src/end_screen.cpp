@@ -2,12 +2,13 @@
 //  end_screen.cpp
 //  170709_action_camera
 //
-//  Created by 狭間祐至 on 2017/07/09.
+//  Created by Áã≠ÈñìÁ•êËá≥ on 2017/07/09.
 //
 //
 
 #include "end_screen.hpp"
 
+using namespace std;
 
 void end_screen::setup(){
     
@@ -25,12 +26,11 @@ void end_screen::draw(){
     int title_x = ofGetWidth()/4;
     int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
     
-    //タイトルの描画
+    //ENDの文字
     ofSetColor(255, 255, 255);
     title_font.drawString("END", title_x, title_y);
     
-    //cout << mai_sc_01.kintore_count << endl;
+   
     
-
     
 }

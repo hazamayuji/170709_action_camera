@@ -12,14 +12,8 @@
 #include "BaseScreen.hpp"
 #include "start_screen.hpp"
 
-#include "ofxCv.h"
-using namespace ofxCv;
-using namespace cv;
+#include "ofxOpenCv.h"
 
-#include "ofxFaceTrackerThreaded.h"
-
-#define INPUT_MOVIE_WSIZE   640
-#define INPUT_MOVIE_HSIZE   480
 
 class main_screen_01 : public BaseScreen{
 public:
@@ -31,7 +25,5 @@ public:
     int kintore_count = 0;
     
     ofVideoGrabber cam;
-    ofxFaceTrackerThreaded tracker;
     
-   
 };

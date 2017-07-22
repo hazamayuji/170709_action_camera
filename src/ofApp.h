@@ -28,19 +28,18 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        
-      //int currentScreen;
     
-    
-    //簡単にする
     int box_y = ofGetHeight()/2 + 50;
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;
     
-    bool Press_button_1 = false;
-    bool Press_button_2 = false;
-    bool Press_button_3 = false;
+    int box_x_1 = 50;
+    int box_x_end = 50 + ofGetWidth()/3;
+    int box_y_end = ofGetHeight() - 150;
     
+    bool Press_button[3] = {false, false, false};//{1, end, まだ}
+
+
     bool Press_button_end = false;
     
     

@@ -1,6 +1,8 @@
 #include "ofApp.h"
 
+//動的配列でscreeenを追加
 vector <BaseScreen *> screens;
+
 //インスタンス化
 start_screen star_sc;
 main_screen_01 mai_sc_01;
@@ -12,9 +14,6 @@ void ofApp::setup(){
     ofBackground(0, 0, 0);
  
     star_sc.currentScreen = 0;
-
-    
-
     
     //番号:0
     //start_screen
@@ -34,22 +33,20 @@ void ofApp::setup(){
     end_sc -> setup();
     screens.push_back(end_sc);
     
-    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //screen
+    
     screens[star_sc.currentScreen] -> update();
     
-    if(Press_button_1){
-        star_sc.currentScreen = 1;
+    //画面推移
+    for(int i = 0; i < 4; i ++){
+        if(Press_button[i]){
+            star_sc.currentScreen = i+1;
+        }
     }
     
-    
-    if(Press_button_end){
-        star_sc.currentScreen = 2;
-    }
 }
 
 //--------------------------------------------------------------
@@ -61,20 +58,6 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     
     screens[star_sc.currentScreen] -> keyPressed();
-    
-    switch (key) {
-            
-        case '1':
-            star_sc.currentScreen = 0;
-            break;
-        case '2':
-            star_sc.currentScreen = 1;
-            break;
-        case '3':
-            star_sc.currentScreen = 2;
-            break;
-            
-    }
     
 }
 
@@ -89,13 +72,14 @@ void ofApp::keyReleased(int key){
 void ofApp::mouseMoved(int x, int y){
 
     screens[star_sc.currentScreen] -> mouseMoved();
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     
     screens[star_sc.currentScreen] -> mouseDragged();
+    
 }
 
 //--------------------------------------------------------------
@@ -103,23 +87,15 @@ void ofApp::mousePressed(int x, int y, int button){
 
      screens[star_sc.currentScreen] -> mousePressed();
     
-    int box_x_1 = 50 + (ofGetWidth()/3) * 0;
     if(ofGetMouseX() > box_x_1 && ofGetMouseX() < box_x_1 + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-        Press_button_1 = true;
+        Press_button[0] = true;
     }
-    
-    
-    
-    int box_x_end = 50 + ofGetWidth()/3;
-    int box_y_end = ofGetHeight() - 150;
     
     if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < box_y_end + box_height && ofGetMouseY() > box_y_end){
-        Press_button_end = true;
+        Press_button[1] = true;
     }
    
-  
-
-    
+    //カウントが共有できるかっていうボタン
     if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < ofGetHeight() - 350 + box_height && ofGetMouseY() > ofGetHeight() - 350){
         mai_sc_01.kintore_count++;
         cout << mai_sc_01.kintore_count << endl;

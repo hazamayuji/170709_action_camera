@@ -25,5 +25,4 @@ public:
     void draw();
     
     ofTrueTypeFont title_font;
-    
 };

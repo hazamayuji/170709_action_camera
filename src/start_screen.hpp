@@ -2,7 +2,7 @@
 //  start_screen.hpp
 //  170709_action_camera
 //
-//  Created by 狭間祐至 on 2017/07/09.
+//  Created by Áã≠ÈñìÁ•êËá≥ on 2017/07/09.
 //
 //
 
@@ -30,17 +30,14 @@ public:
     ofTrueTypeFont font;
     ofTrueTypeFont title_font;
     
-    //int -> stringへの変換がどうしてもうまくいかなかったため強硬手段
+    //int -> string
     string num;
     
-    //画面切り替えで使用
     int currentScreen;
     
     bool box_cov[3] = {false, false, false};
-    bool box_cov_1 = false;
-    bool box_cov_2 = false;
-    bool box_cov_3 = false;
-    
     bool Press_button = false;
+    
+    
     
 };
