@@ -26,21 +26,11 @@ void main_screen_01::setup(){
 
 void main_screen_01::update(){
     
-    for(int i = 0; i < 6; i++){
-        test_count[i].update();
-    }
-    
 }
 
 void main_screen_01::draw(){
     
     ofBackground(0, 0, 0);
-
-    int box_x_end = 50 + (ofGetWidth()/3);
-    int box_y_end = ofGetHeight() - 150;
-    
-    int box_width = ofGetWidth()/4.2666;
-    int box_height = ofGetHeight()/7.6;
     
     ofSetColor(255, 0, 0);
     ofDrawRectangle(box_x_end, box_y_end, box_width, box_height);
@@ -54,12 +44,10 @@ void main_screen_01::draw(){
     //for文にしてさらに簡素化する(?)
     switch (kintore_count) {
         case 0 :
-            //cout << "hi" << endl;
             test_count[0].play();
             test_count[0].draw(300, 300, 400, -300);
             break;
         case 1:
-            //cout << "hi2" << endl;
             test_count[1].play();
             test_count[1].draw(300, 300, 400, -300);
             break;
@@ -69,5 +57,18 @@ void main_screen_01::draw(){
             break;
     }
 
+}
+
+void main_screen_01::mousePressed(int x, int y, int button) {
+    
+    if(x > box_x_end && x < box_x_end + box_width && y < box_y_end + box_height && y > box_y_end){
+        dynamic_cast<ofApp *>(ofGetAppPtr())->changeScreen(AppScreen::EndScreen);
+    }
+
+    //カウントが共有できるかっていうボタン
+    if(x > box_x_end && x < box_x_end + box_width && y < ofGetHeight() - 350 + box_height && y > ofGetHeight() - 350){
+        kintore_count++;
+        cout << kintore_count << endl;
+    }
     
 }

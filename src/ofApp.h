@@ -9,6 +9,13 @@
 
 #define Screen_NUM 5
 
+enum class AppScreen{
+    StartScreen = 0,
+    MainScreen_01,
+    EndScreen,
+};
+
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -28,22 +35,14 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+        void changeScreen(AppScreen screen);
     
-    int box_y = ofGetHeight()/2 + 50;
-    int box_width = ofGetWidth()/4.2666;
-    int box_height = ofGetHeight()/7.6;
+private:
+    BaseScreen *getCurrentScreen();
     
-    int box_x_1 = 50;
-    int box_x_end = 50 + ofGetWidth()/3;
-    int box_y_end = ofGetHeight() - 150;
-    
-    bool Press_button[3] = {false, false, false};//{1, end, まだ}
-
-
-    bool Press_button_end = false;
-    
-    
+    int currentScreen = 0;
 
 
     
 };
+

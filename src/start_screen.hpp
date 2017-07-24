@@ -30,12 +30,17 @@ public:
     ofTrueTypeFont font;
     ofTrueTypeFont title_font;
     
-    //int -> string
-    string num;
-    
-    int currentScreen;
-    
     bool box_cov[3] = {false, false, false};
-    bool Press_button = false;
+
+    
+    int title_x = ofGetWidth()/4;
+    int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
+    
+    int box_y = ofGetHeight()/2 + 50;
+    int box_width = ofGetWidth()/4.2666;
+    int box_height = ofGetHeight()/7.6;
+    int text_y = box_y + ofGetHeight()/12.6;
+    
+    int box_x_1 = 50;
     
 };

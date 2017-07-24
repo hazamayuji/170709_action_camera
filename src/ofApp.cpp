@@ -3,17 +3,30 @@
 //動的配列でscreeenを追加
 vector <BaseScreen *> screens;
 
-//インスタンス化
-start_screen star_sc;
-main_screen_01 mai_sc_01;
-
 using namespace std;
+
+void ofApp::changeScreen(AppScreen screen){
+
+    switch (screen) {
+        case AppScreen::StartScreen:
+            currentScreen = 0;
+            break;
+            
+        case AppScreen::MainScreen_01:
+            currentScreen = 1;
+            break;
+            
+        case AppScreen::EndScreen:
+            currentScreen = 2;
+            break;
+    }
+    
+}
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0, 0, 0);
- 
-    star_sc.currentScreen = 0;
     
     //番号:0
     //start_screen
@@ -38,76 +51,54 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    screens[star_sc.currentScreen] -> update();
-    
-    //画面推移
-    for(int i = 0; i < 4; i ++){
-        if(Press_button[i]){
-            star_sc.currentScreen = i+1;
-        }
-    }
+    getCurrentScreen() -> update();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    screens[star_sc.currentScreen] -> draw();
+    getCurrentScreen() -> draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     
-    screens[star_sc.currentScreen] -> keyPressed();
+    getCurrentScreen() -> keyPressed();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
-    screens[star_sc.currentScreen] -> keyReleased();
+    getCurrentScreen() -> keyReleased();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y){
 
-    screens[star_sc.currentScreen] -> mouseMoved();
+    getCurrentScreen() -> mouseMoved();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     
-    screens[star_sc.currentScreen] -> mouseDragged();
+    getCurrentScreen() -> mouseDragged();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 
-     screens[star_sc.currentScreen] -> mousePressed();
-    
-    if(ofGetMouseX() > box_x_1 && ofGetMouseX() < box_x_1 + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-        Press_button[0] = true;
-    }
-    
-    if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < box_y_end + box_height && ofGetMouseY() > box_y_end){
-        Press_button[1] = true;
-    }
+     getCurrentScreen() -> mousePressed(x, y, button);
    
-    //カウントが共有できるかっていうボタン
-    if(ofGetMouseX() > box_x_end && ofGetMouseX() < box_x_end + box_width && ofGetMouseY() < ofGetHeight() - 350 + box_height && ofGetMouseY() > ofGetHeight() - 350){
-        mai_sc_01.kintore_count++;
-        cout << mai_sc_01.kintore_count << endl;
-    }
-   
-
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
     
-     screens[star_sc.currentScreen] -> mouseReleased();
+     getCurrentScreen() -> mouseReleased();
 
 }
 
@@ -135,4 +126,8 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+BaseScreen *ofApp::getCurrentScreen() {
+    return screens[currentScreen];
 }

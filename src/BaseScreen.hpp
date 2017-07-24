@@ -20,9 +20,7 @@ public:
     virtual void keyReleased(){};
     virtual void mouseMoved(){};
     virtual void mouseDragged(){};
-    virtual void mousePressed(){};
+    virtual void mousePressed(int x, int y, int button){};
     virtual void mouseReleased(){};
-    
-    virtual void IntToString(){};
     
 };

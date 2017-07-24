@@ -23,9 +23,6 @@ void end_screen::update(){
 
 void end_screen::draw(){
     
-    int title_x = ofGetWidth()/4;
-    int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
-    
     //ENDの文字
     ofSetColor(255, 255, 255);
     title_font.drawString("END", title_x, title_y);

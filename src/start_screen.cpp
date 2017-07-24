@@ -3,7 +3,6 @@
 //  170709_action_camera
 //
 
-
 #include "start_screen.hpp"
 using namespace std;
 
@@ -26,27 +25,16 @@ void start_screen::update(){
 //--------------------------------------------------------------
 
 void start_screen::draw(){
-    int title_x = ofGetWidth()/4;
-    int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
-    
-    int box_y = ofGetHeight()/2 + 50;
-    int box_width = ofGetWidth()/4.2666;
-    int box_height = ofGetHeight()/7.6;
-    int text_y = box_y + ofGetHeight()/12.6;
-    
-    
     
     //タイトル
     ofSetColor(255, 255, 255);
     title_font.drawString("Kintorechan", title_x, title_y);
-    
 
     //----box----//
     
     for(int i = 0; i < 4; i++){
         int text_x = ofGetWidth()/8.19 + (ofGetWidth()/3) * i;
         int box_x = 50 + (ofGetWidth()/3) * i;
-        
         
         //lev表示(変数と文字列の変換)
         if(i == 0){
@@ -69,8 +57,6 @@ void start_screen::draw(){
 
     }
     
-    
-    
     for(int i = 0; i < 4; i++){
         
         int box_x_sub = 50 + (ofGetWidth()/3) * i;
@@ -87,7 +73,6 @@ void start_screen::draw(){
         }
 
     }
-    
 
 
 }
@@ -106,7 +91,9 @@ void start_screen::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void start_screen::mousePressed(int x, int y, int button){
     
-    
+        if(x > box_x_1 && x < box_x_1 + box_width && y < box_y + box_height && y > box_y){
+            dynamic_cast<ofApp *>(ofGetAppPtr())->changeScreen(AppScreen::MainScreen_01);
+        }
 }
 
 //--------------------------------------------------------------
