@@ -26,6 +26,8 @@ public:
     void keyPressed(int key);
     void keyReleased(int key);
     
+    string num;
+    
     //フォント
     ofTrueTypeFont font;
     ofTrueTypeFont title_font;
