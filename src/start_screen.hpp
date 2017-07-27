@@ -32,17 +32,22 @@ public:
     ofTrueTypeFont font;
     ofTrueTypeFont title_font;
     
+    //ボタンの上にカバーをかぶせる
     bool box_cov[3] = {false, false, false};
-
     
+    //Kintorechanの文字
     int title_x = ofGetWidth()/4;
     int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
     
-    int box_y = ofGetHeight()/2 + 50;
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;
-    int text_y = box_y + ofGetHeight()/12.6;
     
     int box_x_1 = 50;
+    int box_y = ofGetHeight()/2 + 50;
+    
+    //levの文字
+    int text_y = box_y + ofGetHeight()/12.6;
     
 };
+
+

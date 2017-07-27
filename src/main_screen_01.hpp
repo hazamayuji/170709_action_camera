@@ -14,6 +14,7 @@
 #include "ofApp.h"
 
 #include "ofxOpenCv.h"
+#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/ofxFaceTracker.h"
 
 
 class main_screen_01 : public BaseScreen{
@@ -34,10 +35,17 @@ public:
     //数える人
     ofVideoPlayer test_count[6];
     
+    //使う変数
     int box_x_end = 50 + (ofGetWidth()/3);
     int box_y_end = ofGetHeight() - 150;
     
     int box_width = ofGetWidth()/4.2666;
     int box_height = ofGetHeight()/7.6;
+    
+    //ofVideoGrabber cam;
+    ofxFaceTracker tracker;
+    ofxFaceTracker imgTracker;
+    ofImage faceImage;
+    ofEasyCam easyCam;
 
 };

@@ -18,7 +18,7 @@ public:
     virtual void draw(){};
     virtual void keyPressed(){};
     virtual void keyReleased(){};
-    virtual void mouseMoved(){};
+    virtual void mouseMoved(int x, int y){};
     virtual void mouseDragged(){};
     virtual void mousePressed(int x, int y, int button){};
     virtual void mouseReleased(){};

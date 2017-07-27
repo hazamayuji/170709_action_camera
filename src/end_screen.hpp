@@ -26,4 +26,6 @@ public:
     
     int title_x = ofGetWidth()/4;
     int title_y = ofGetHeight()/2 - ofGetHeight()/7.6;
+    
+   // main_screen_01 maiSc1;
 };

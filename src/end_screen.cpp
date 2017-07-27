@@ -19,6 +19,8 @@ void end_screen::setup(){
 
 void end_screen::update(){
     
+    //cout << maiSc1.kintore_count << endl;
+
 }
 
 void end_screen::draw(){

@@ -61,25 +61,29 @@ void start_screen::draw(){
         
         int box_x_sub = 50 + (ofGetWidth()/3) * i;
         
-        if(ofGetMouseX() > box_x_sub && ofGetMouseX() < box_x_sub + box_width && ofGetMouseY() < box_y + box_height && ofGetMouseY() > box_y){
-            box_cov[i] = true;
-        }else{
-            box_cov[i] = false;
-        }
-        
         if(box_cov[i]){
             ofSetColor(255, 255, 255, 127);
             ofDrawRectangle(box_x_sub, box_y, box_width, box_height);
         }
-
+        
     }
-
 
 }
 
 //--------------------------------------------------------------
 void start_screen::mouseMoved(int x, int y ){
-  
+
+    for(int i = 0; i < 4; i++){
+
+        int box_x_sub = 50 + (ofGetWidth()/3) * i;
+
+        if(x > box_x_sub && x < box_x_sub + box_width && y < box_y + box_height && y > box_y){
+            box_cov[i] = true;
+        }else{
+            box_cov[i] = false;
+        }
+        
+    }
     
 }
 
@@ -91,9 +95,11 @@ void start_screen::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void start_screen::mousePressed(int x, int y, int button){
     
+        //画面推移
         if(x > box_x_1 && x < box_x_1 + box_width && y < box_y + box_height && y > box_y){
             dynamic_cast<ofApp *>(ofGetAppPtr())->changeScreen(AppScreen::MainScreen_01);
         }
+
 }
 
 //--------------------------------------------------------------
