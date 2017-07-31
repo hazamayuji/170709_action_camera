@@ -17,8 +17,8 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
-#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/Tracker.h"
-#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/ExpressionClassifier.h"
+#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/Tracker.h"
+#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/src/ExpressionClassifier.h"
 
 class ofxFaceTracker {
 public:

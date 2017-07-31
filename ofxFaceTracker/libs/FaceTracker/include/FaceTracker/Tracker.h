@@ -37,49 +37,79 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __PAW_h_
-#define __PAW_h_
-#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/IO.h>
+#ifndef __Tracker_h_
+#define __Tracker_h_
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/CLM.h>
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/FDet.h>
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/FCheck.h>
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      A Piecewise Affine Warp
+      Face Tracker
   */
-  class PAW{
+  class Tracker{
   public:    
-    int     _nPix;   /**< Number of pixels                   */
-    double  _xmin;   /**< Minimum x-coord for src            */
-    double  _ymin;   /**< Minimum y-coord for src            */
-    cv::Mat _src;    /**< Source points                      */
-    cv::Mat _dst;    /**< destination points                 */
-    cv::Mat _tri;    /**< Triangulation                      */
-    cv::Mat _tridx;  /**< Triangle for each valid pixel      */
-    cv::Mat _mask;   /**< Valid region mask                  */
-    cv::Mat _coeff;  /**< affine coeffs for all triangles    */
-    cv::Mat _alpha;  /**< matrix of (c,x,y) coeffs for alpha */
-    cv::Mat _beta;   /**< matrix of (c,x,y) coeffs for alpha */
-    cv::Mat _mapx;   /**< x-destination of warped points     */
-    cv::Mat _mapy;   /**< y-destination of warped points     */
+    CLM        _clm;    /**< Constrained Local Model           */
+    FDet       _fdet;   /**< Face Detector                     */
+    int64      _frame;  /**< Frame number since last detection */    
+    MFCheck    _fcheck; /**< Failure checker                   */
+    cv::Mat    _shape;  /**< Current shape                     */
+    cv::Mat    _rshape; /**< Reference shape                   */
+    cv::Rect   _rect;   /**< Detected rectangle                */
+    cv::Scalar _simil;  /**< Initialization similarity         */
+    
+    /** NULL constructor */
+    Tracker(){;}
+    
+    /** Constructor from model file */
+    Tracker(const char* fname){this->Load(fname);}
 
-    PAW(){;}
-    PAW(const char* fname){this->Load(fname);}
-    PAW(cv::Mat &src,cv::Mat &tri){this->Init(src,tri);}
-    PAW& operator=(PAW const&rhs);
-    inline int nPoints(){return _src.rows/2;}
-    inline int nTri(){return _tri.rows;}
-    inline int Width(){return _mask.cols;}
-    inline int Height(){return _mask.rows;}
+    /** Constructor from components */
+    Tracker(CLM &clm,FDet &fdet,MFCheck &fcheck,
+	    cv::Mat &rshape,cv::Scalar &simil){
+      this->Init(clm,fdet,fcheck,rshape,simil);
+    }
+    /**
+       Track model in current frame
+       @param im     Image containing face
+       @param wSize  List of search window sizes (set from large to small)
+       @param fpd    Number of frames between detections (-1: never)
+       @param nIter  Maximum number of optimization steps to perform.
+       @param clamp  Shape model parameter clamping factor (in standard dev's)
+       @param fTol   Convergence tolerance of optimization
+       @param fcheck Check if tracking succeeded?
+       @return       -1 on failure, 0 otherwise.
+    */
+    int Track(cv::Mat im,std::vector<int> &wSize,
+	      const int    fpd    =-1,
+	      const int    nIter  = 10,
+	      const double clamp  = 3.0,
+	      const double fTol   = 0.01,
+	      const bool   fcheck = true);
+
+    /** Reset frame number (will perform detection in next image) */
+    inline void FrameReset(){_frame = -1;}
+
+    /** Load tracker from model file */
     void Load(const char* fname);
-    void Save(const char* fname);
-    void Write(std::ofstream &s);
-    void Read(std::ifstream &s,bool readType = true);
-    void Init(cv::Mat &src,cv::Mat &tri);
-    void Crop(cv::Mat &src, cv::Mat &dst,cv::Mat &s);
 
-  private:    
-    void CalcCoeff();
-    void WarpRegion(cv::Mat &mapx,cv::Mat &mapy);
+    /** Save tracker to model file */
+    void Save(const char* fname);
+    
+    /** Write tracker to file stream */
+    void Write(std::ofstream &s);
+
+    /** Read tracking from file stream */
+    void Read(std::ifstream &s,bool readType = true);
+
+  private:
+    cv::Mat gray_,temp_,ncc_,small_;
+    void Init(CLM &clm,FDet &fdet,MFCheck &fcheck,
+	      cv::Mat &rshape,cv::Scalar &simil);    
+    void InitShape(cv::Rect &r,cv::Mat &shape);
+    cv::Rect ReDetect(cv::Mat &im);
+    cv::Rect UpdateTemplate(cv::Mat &im,cv::Mat &s,bool rsize);
   };
   //===========================================================================
 }

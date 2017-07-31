@@ -37,45 +37,49 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __PDM_h_
-#define __PDM_h_
-#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/IO.h>
+#ifndef __FDet_h_
+#define __FDet_h_
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/IO.h>
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      A 3D Point Distribution Model
+      A wrapper for OpenCV's face detector
   */
-  class PDM{
-  public:    
-    cv::Mat _V; /**< basis of variation                            */
-    cv::Mat _E; /**< vector of eigenvalues (row vector)            */
-    cv::Mat _M; /**< mean 3D shape vector [x1,..,xn,y1,...yn]      */
+  class FDet{
+  public:
+    int                      _haar_count;
+    cv::Rect                 _haar_rect;
+    int                      _min_neighbours; /**< see OpenCV documentation */
+    int                      _min_size;       /**< ...                      */
+    double                   _img_scale;      /**< ...                      */
+    double                   _scale_factor;   /**< ...                      */
+    CvHaarClassifierCascade* _cascade;        /**< ...                      */
 
-    PDM(){;}
-    PDM(const char* fname){this->Load(fname);}
-    PDM(cv::Mat &M,cv::Mat &V,cv::Mat &E){this->Init(M,V,E);}
-    PDM& operator=(PDM const&rhs);
-    inline int nPoints(){return _M.rows/3;}
-    inline int nModes(){return _V.cols;}
-    inline double Var(int i){assert(i<_E.cols); return _E.at<double>(0,i);}
+    FDet(){storage_=NULL;_cascade=NULL;}
+    FDet(const char* fname){this->Load(fname);}
+    FDet(const char*  cascFile,
+	 const double img_scale = 1.3,
+	 const double scale_factor = 1.1,
+	 const int    min_neighbours = 2,
+	 const int    min_size = 30){
+      this->Init(cascFile,img_scale,scale_factor,min_neighbours,min_size);
+    }
+    ~FDet();
+    FDet& operator=(FDet const&rhs);
+    void Init(const char* fname,
+	      const double img_scale = 1.3,
+	      const double scale_factor = 1.1,
+	      const int    min_neighbours = 2,
+	      const int    min_size = 30);
+    cv::Rect Detect(cv::Mat im);
     void Load(const char* fname);
     void Save(const char* fname);
     void Write(std::ofstream &s);
     void Read(std::ifstream &s,bool readType = true);
-    void Clamp(cv::Mat &p,double c);
-    void Init(cv::Mat &M,cv::Mat &V,cv::Mat &E);
-    void Identity(cv::Mat &plocal,cv::Mat &pglobl);
-    void CalcShape3D(cv::Mat &s,cv::Mat &plocal);
-    void CalcShape2D(cv::Mat &s,cv::Mat &plocal,cv::Mat &pglobl);
-    void CalcParams(cv::Mat &s,cv::Mat &plocal,cv::Mat &pglobl);
-    void CalcRigidJacob(cv::Mat &plocal,cv::Mat &pglobl,cv::Mat &Jacob);
-    void CalcJacob(cv::Mat &plocal,cv::Mat &pglobl,cv::Mat &Jacob);
-    void CalcReferenceUpdate(cv::Mat &dp,cv::Mat &plocal,cv::Mat &pglobl);
-    void ApplySimT(double a,double b,double tx,double ty,cv::Mat &pglobl);
     
   private:
-    cv::Mat S_,R_,s_,P_,Px_,Py_,Pz_,R1_,R2_,R3_;
+    cv::Mat small_img_; CvMemStorage* storage_;
   };
   //===========================================================================
 }

@@ -8,7 +8,7 @@
 
 #include "main_screen_01.hpp"
 
-#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/ofxFaceTracker.h"
+#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/src/ofxFaceTracker.h"
 
 
 
@@ -19,7 +19,7 @@ void main_screen_01::setup(){
     ofEnableAlphaBlending();
 
     //動画読み込み
-    test_count[0].load("/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/bin/data/0.MOV");
+    test_count[0].load("/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/bin/data/0.mp4");
     test_count[1].load("/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/bin/data/1.MOV");
     test_count[2].load("/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/bin/data/2.MOV");
     test_count[3].load("/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/bin/data/3.MOV");

@@ -68,8 +68,8 @@
 		0B87BF43E5302005FEF650B6 /* ios.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ios.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/highgui/ios.h; sourceTree = SOURCE_ROOT; };
 		0CEC1FE946DBDBAB82AF6FE3 /* global_motion.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = global_motion.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/videostab/global_motion.hpp; sourceTree = SOURCE_ROOT; };
 		0CF0AA3895D28E97D8A1E4A9 /* ground_truth.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ground_truth.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/ground_truth.h; sourceTree = SOURCE_ROOT; };
-		0DF3B49D1F29E59600E4E256 /* ofxCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCv.h; sourceTree = "<group>"; };
-		0DF3B49E1F29E60800E4E256 /* FaceTracker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FaceTracker; sourceTree = "<group>"; };
+		0D7F218B1F2F1A3100BE1509 /* ofxFaceTracker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ofxFaceTracker; sourceTree = "<group>"; };
+		0D7F218D1F2F1FA600BE1509 /* ofxCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCv.h; sourceTree = "<group>"; };
 		1054B4574F75C1F693C147C6 /* optical_flow.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = optical_flow.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/videostab/optical_flow.hpp; sourceTree = SOURCE_ROOT; };
 		114B872696817CC33990FC83 /* imgproc.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imgproc.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgproc/imgproc.hpp; sourceTree = SOURCE_ROOT; };
 		1335F3F49E8A72CB04FA873D /* util_inl.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = util_inl.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/stitching/detail/util_inl.hpp; sourceTree = SOURCE_ROOT; };
@@ -556,7 +556,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				0DF3B49E1F29E60800E4E256 /* FaceTracker */,
+				0D7F218B1F2F1A3100BE1509 /* ofxFaceTracker */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 			);
 			name = addons;
@@ -693,7 +693,7 @@
 				CE56E7EDA518213BE34B4913 /* main_screen_01.hpp */,
 				09331FD45546AA6D588C23E6 /* start_screen.cpp */,
 				D16A2AB60BA14D4C4F432736 /* start_screen.hpp */,
-				0DF3B49D1F29E59600E4E256 /* ofxCv.h */,
+				0D7F218D1F2F1FA600BE1509 /* ofxCv.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

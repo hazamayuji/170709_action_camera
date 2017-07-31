@@ -14,7 +14,7 @@
 #include "ofApp.h"
 
 #include "ofxOpenCv.h"
-#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/ofxFaceTracker.h"
+#include "/Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/src/ofxFaceTracker.h"
 
 
 class main_screen_01 : public BaseScreen{
@@ -49,3 +49,5 @@ public:
     ofEasyCam easyCam;
 
 };
+
+

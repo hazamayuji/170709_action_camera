@@ -37,61 +37,49 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __Patch_h_
-#define __Patch_h_
-#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/IO.h>
+#ifndef __CLM_h_
+#define __CLM_h_
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/PDM.h>
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/Patch.h>
+#include <vector>
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      A Patch Expert
+      A Constrained Local Model
   */
-  class Patch{
+  class CLM{
   public:
-    int     _t; /**< Type of patch (0=raw,1=grad,2=lbp) */
-    double  _a; /**< scaling                            */
-    double  _b; /**< bias                               */
-    cv::Mat _W; /**< Gain                               */
+    PDM                               _pdm;   /**< 3D Shape model           */
+    cv::Mat                           _plocal;/**< local parameters         */
+    cv::Mat                           _pglobl;/**< global parameters        */
+    cv::Mat                           _refs;  /**< Reference shape          */
+    std::vector<cv::Mat>              _cent;  /**< Centers/view (Euler)     */
+    std::vector<cv::Mat>              _visi;  /**< Visibility for each view */
+    std::vector<std::vector<MPatch> > _patch; /**< Patches/point/view       */
     
-    Patch(){;}
-    Patch(const char* fname){this->Load(fname);}
-    Patch(int t,double a,double b,cv::Mat &W){this->Init(t,a,b,W);}
-    Patch& operator=(Patch const&rhs);
-    inline int w(){return _W.cols;}
-    inline int h(){return _W.rows;}
+    CLM(){;}
+    CLM(const char* fname){this->Load(fname);}
+    CLM(PDM &s,cv::Mat &r, std::vector<cv::Mat> &c,
+	std::vector<cv::Mat> &v,std::vector<std::vector<MPatch> > &p){
+      this->Init(s,r,c,v,p);
+    }
+    CLM& operator=(CLM const&rhs);
+    inline int nViews(){return _patch.size();}
+    int GetViewIdx();
     void Load(const char* fname);
     void Save(const char* fname);
     void Write(std::ofstream &s);
     void Read(std::ifstream &s,bool readType = true);
-    void Init(int t, double a, double b, cv::Mat &W);
-    void Response(cv::Mat &im,cv::Mat &resp);    
-
+    void Init(PDM &s,cv::Mat &r, std::vector<cv::Mat> &c,
+	      std::vector<cv::Mat> &v,std::vector<std::vector<MPatch> > &p);
+    void Fit(cv::Mat im, std::vector<int> &wSize,
+	     int nIter = 10,double clamp = 3.0,double fTol = 0.0);
   private:
-    cv::Mat im_,res_;
-  };
-  //===========================================================================
-  /**
-     A Multi-patch Expert
-  */
-  class MPatch{
-  public:
-    int _w,_h;             /**< Width and height of patch */
-    std::vector<Patch> _p; /**< List of patches           */
-    
-    MPatch(){;}
-    MPatch(const char* fname){this->Load(fname);}
-    MPatch(std::vector<Patch> &p){this->Init(p);}
-    MPatch& operator=(MPatch const&rhs);
-    inline int nPatch(){return _p.size();}
-    void Load(const char* fname);
-    void Save(const char* fname);
-    void Write(std::ofstream &s);
-    void Read(std::ifstream &s,bool readType = true);
-    void Init(std::vector<Patch> &p);
-    void Response(cv::Mat &im,cv::Mat &resp);    
-
-  private:
-    cv::Mat res_;
+    cv::Mat cshape_,bshape_,oshape_,ms_,u_,g_,J_,H_; 
+    std::vector<cv::Mat> prob_,pmem_,wmem_;
+    void Optimize(int idx,int wSize,int nIter,
+		  double fTol,double clamp,bool rigid);
   };
   //===========================================================================
 }

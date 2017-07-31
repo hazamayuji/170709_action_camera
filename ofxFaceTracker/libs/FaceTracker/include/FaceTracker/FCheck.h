@@ -37,49 +37,56 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __CLM_h_
-#define __CLM_h_
-#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/PDM.h>
-#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/FaceTracker/Patch.h>
+#ifndef __FCheck_h_
+#define __FCheck_h_
+#include </Users/hazamayuji/Desktop/of_v0.9.8_osx_release/apps/myApps/170709_action_camera/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/PAW.h>
 #include <vector>
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      A Constrained Local Model
+      Checks for Tracking Failure
   */
-  class CLM{
-  public:
-    PDM                               _pdm;   /**< 3D Shape model           */
-    cv::Mat                           _plocal;/**< local parameters         */
-    cv::Mat                           _pglobl;/**< global parameters        */
-    cv::Mat                           _refs;  /**< Reference shape          */
-    std::vector<cv::Mat>              _cent;  /**< Centers/view (Euler)     */
-    std::vector<cv::Mat>              _visi;  /**< Visibility for each view */
-    std::vector<std::vector<MPatch> > _patch; /**< Patches/point/view       */
-    
-    CLM(){;}
-    CLM(const char* fname){this->Load(fname);}
-    CLM(PDM &s,cv::Mat &r, std::vector<cv::Mat> &c,
-	std::vector<cv::Mat> &v,std::vector<std::vector<MPatch> > &p){
-      this->Init(s,r,c,v,p);
-    }
-    CLM& operator=(CLM const&rhs);
-    inline int nViews(){return _patch.size();}
-    int GetViewIdx();
+  class FCheck{
+  public:    
+    PAW     _paw; /**< Piecewise affine warp */
+    double  _b;   /**< SVM bias              */
+    cv::Mat _w;   /**< SVM gain              */
+
+    FCheck(){;}
+    FCheck(const char* fname){this->Load(fname);}
+    FCheck(double b, cv::Mat &w, PAW &paw){this->Init(b,w,paw);}
+    FCheck& operator=(FCheck const&rhs);
+    void Init(double b, cv::Mat &w, PAW &paw);
     void Load(const char* fname);
     void Save(const char* fname);
     void Write(std::ofstream &s);
     void Read(std::ifstream &s,bool readType = true);
-    void Init(PDM &s,cv::Mat &r, std::vector<cv::Mat> &c,
-	      std::vector<cv::Mat> &v,std::vector<std::vector<MPatch> > &p);
-    void Fit(cv::Mat im, std::vector<int> &wSize,
-	     int nIter = 10,double clamp = 3.0,double fTol = 0.0);
+    bool Check(cv::Mat &im,cv::Mat &s);
+    
   private:
-    cv::Mat cshape_,bshape_,oshape_,ms_,u_,g_,J_,H_; 
-    std::vector<cv::Mat> prob_,pmem_,wmem_;
-    void Optimize(int idx,int wSize,int nIter,
-		  double fTol,double clamp,bool rigid);
+    cv::Mat crop_,vec_;
+  };
+  //===========================================================================
+  /** 
+      Checks for Multiview Tracking Failure
+  */
+  class MFCheck{
+  public:    
+    std::vector<FCheck> _fcheck; /**< FCheck for each view */
+    
+    MFCheck(){;}
+    MFCheck(const char* fname){this->Load(fname);}
+    MFCheck(std::vector<FCheck> &fcheck){this->Init(fcheck);}
+    MFCheck& operator=(MFCheck const&rhs){      
+      this->_fcheck = rhs._fcheck; return *this;
+    }
+    void Init(std::vector<FCheck> &fcheck){_fcheck = fcheck;}
+    void Load(const char* fname);
+    void Save(const char* fname);
+    void Write(std::ofstream &s);
+    void Read(std::ifstream &s,bool readType = true);
+    bool Check(int idx,cv::Mat &im,cv::Mat &s);
   };
   //===========================================================================
 }

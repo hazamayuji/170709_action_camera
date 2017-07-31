@@ -8,8 +8,11 @@
 
 #pragma once
 #include "ofMain.h"
+#include "ofxOpenCv.h"
+
 
 class BaseScreen{
+   
     
 public:
     
